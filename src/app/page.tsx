@@ -1,7 +1,11 @@
-import Image from "next/image";
+import SideBar from "./components/SideBar";
+import DashBoard from "./components/dashboard/DashBoard";
 
 export default function Home() {
   return (
-   <div>This is a Task Admin app</div>
+   <div className="poppins flex w-full h-screen">
+    <SideBar />
+    <DashBoard />
+   </div>
   );
 }
