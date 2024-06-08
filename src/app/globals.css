@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --mainColor: rgb(62, 99, 255);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,14 +17,38 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.light-mode {
+  background-color: white;
+  color: black;
+}
+
+.dark-mode {
+  background-color: rgb(27, 35, 66);
+  color: white;
+}
+
+.dark-mode input::placeholder {
+  color: white;
+}
+
+.poppins {
+  font-family: var(--font-poppins);
+}
+
+.poppins-regular {
+  font-weight: 400;
+}
+
+.poppins-light {
+  font-weight: 300;
+}
+
+.poppins-thin {
+  font-weight: 100;
+}
+
+.poppins-semibold {
+  font-weight: 600;
 }
 
 @layer utilities {
