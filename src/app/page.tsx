@@ -1,5 +1,5 @@
 import SideBar from "./components/SideBar";
-import DashBoard from "./components/dashboard/DashBoard";
+import DashBoard from "./components/DarkMode";
 
 export default function Home() {
   return (

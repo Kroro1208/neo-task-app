@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket, faFeather } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContextProvider } from "../ContextAPI";
+import DarkMode from "./DarkMode";
 
 interface MenuItem {
     name: string;
@@ -32,7 +33,7 @@ const SideBar = () => {
     }
 
   return (
-    <div className="poppins border border-gray-200 w-[330px] p-6 py-16 flex flex-col gap-3 justify-center">
+    <div className="poppins border border-gray-200 h-full w-[330px] p-6 py-16 flex flex-col gap-40 justify-center">
       {/* logo */}
       <div className="flex gap-2 items-center">
         <FontAwesomeIcon
@@ -75,10 +76,7 @@ const SideBar = () => {
             />
             <span className="text-[15px]">ログアウト</span>
         </div>
-      </div>
-      {/* DarkMode */}
-      <div className="border p-3">
-        darkMode
+        <DarkMode />
       </div>
     </div>
   );

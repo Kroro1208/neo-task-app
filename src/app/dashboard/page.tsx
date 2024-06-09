@@ -1,7 +1,7 @@
 "use client";
 import { useGlobalContextProvider } from '../ContextAPI'
 import SideBar from '../components/SideBar';
-import DashBoard from '../components/dashboard/DashBoard';
+import DashBoard from '../components/Dashboard/Dashboard';
 
 const Page = () => {
     const {isDark, setIsDark} = useGlobalContextProvider();
