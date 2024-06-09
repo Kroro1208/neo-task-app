@@ -6,12 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const DarkMode = () => {
   const {isDark, setIsDark} = useGlobalContextProvider();
 
-  // const toggleMode = () => {
-  //   const newMode = !isDark;
-  //   localStorage.setItem('darkMode', JSON.stringify(newMode));
-  //   setIsDark(newMode);
-  // }
-
+  const toggleMode = () => {
+    const newMode = !isDark;
+    localStorage.setItem('darkMode', JSON.stringify(newMode));
+    setIsDark(newMode);
+  }
 
   return (
     <div>
@@ -20,12 +19,12 @@ const DarkMode = () => {
         <div
         className='bg-red-500 h-full w-1/2 opacity-0'
         onClick={() => {
-          setIsDark(false);
+          toggleMode();
         }}></div>
         <div
         className='bg-blue-500 h-full w-1/2 opacity-0'
         onClick={()=>{
-          setIsDark(true);
+          toggleMode();
         }}></div>
 
         <div className={`rounded-full h-[23px] top-[5px] w-[22px]
