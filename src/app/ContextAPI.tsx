@@ -3,6 +3,7 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 import { Project } from "./Data/ProjectsData";
 import { ProjectCategory } from "./Data/CategoriesData";
+import { useUser} from "@clerk/nextjs";
 
 interface MenuItem {
     name: string;
@@ -72,6 +73,8 @@ function GlobalContextProvider({children}: {children: ReactNode}) {
     const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
     const [allProjects, setAllProjects] = useState<Project[]>([]);
     const [allCategories, setAllCategories] = useState<ProjectCategory[]>([]);
+    const {isLoaded, isSignedIn, user} = useUser();
+
 
     return (
         <GlobalContext.Provider

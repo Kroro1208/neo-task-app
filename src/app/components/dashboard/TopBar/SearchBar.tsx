@@ -1,5 +1,7 @@
 import { useGlobalContextProvider } from '@/app/ContextAPI'
 import { Project, Task } from '@/app/Data/ProjectsData';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 
 const SearchBar = () => {
@@ -8,7 +10,7 @@ const SearchBar = () => {
   const { allProjects } = allProjectsObject;
   const [searchKeyword, setSearchKeyword] = useState("");
   const [projectsFound, setProjectsFound] = useState<Project[]>([]);
-  const [taskFound, setTaskFound] = useState<Task[]>([]);
+  const [tasksFound, setTasksFound] = useState<Task[]>([]);
 
   useEffect(()=> {
     if(searchKeyword.trim().length > 0) {
@@ -23,10 +25,10 @@ const SearchBar = () => {
       });
 
       setProjectsFound(filteredProjects);
-      setTaskFound(filteredTask);
+      setTasksFound(filteredTask);
     } else {
       setProjectsFound([]);
-      setTaskFound([]);
+      setTasksFound([]);
     }
   }, [searchKeyword, allProjects]);
 
@@ -39,10 +41,45 @@ const SearchBar = () => {
   }
 
   return (
-    <div>
-      SearchBar
+    <div className='w-1/3'>
+      <div className='dlex gap-2 items-center border p-3 rounded-lg'>
+        <FontAwesomeIcon
+        icon={faSearch}
+        className={`${isDark ? "text-white" : "bg-gray-500"}`}
+        height={20}
+        width={20}
+        />
+        <input
+        className={`outline-none text-[14px] font-light w-full ${isDark ? "bg-black" : "bg-white"}`}
+        placeholder='キーワードを入力'
+        ref={inputRef}
+        value={searchKeyword}
+        onChange={(e)=>handleKeydown(e)}
+        />
+      </div>
+      {/* {searchKeyword.length > 0 && (
+        <SujestedList projectsFound={projectsFound} taskFound={tasksFound} />
+      )} */}
     </div>
-  )
+  );
+}
+
+export const SujestedList =({
+  projectsFound,
+  tasksFound
+}: {
+  projectsFound: Project[];
+  tasksFound: Task[];
+}) => {
+  const {
+    dashboardItems,
+    allProjectsObject,
+    isDark
+  } = useGlobalContextProvider();
+  
+  const {menuItems, setMenuItems } = dashboardItems;
+  const {allProjects} = allProjectsObject;
+
 }
 
 export default SearchBar
