@@ -73,7 +73,6 @@ function GlobalContextProvider({children}: {children: ReactNode}) {
     const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
     const [allProjects, setAllProjects] = useState<Project[]>([]);
     const [allCategories, setAllCategories] = useState<ProjectCategory[]>([]);
-    const {isLoaded, isSignedIn, user} = useUser();
 
 
     return (

@@ -21,7 +21,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
       <html lang="en">
         <body className={poppints.variable}>
           <GlobalContextProvider>
@@ -29,6 +28,5 @@ export default function RootLayout({
           </GlobalContextProvider>
         </body>
       </html>
-    </ClerkProvider>
   );
 }

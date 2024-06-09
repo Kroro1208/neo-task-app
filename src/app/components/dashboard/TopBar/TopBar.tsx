@@ -10,14 +10,13 @@ const TopBar = () => {
   const [openSearchBar, setOpenSearchBar ] = useState(false);
   const {openSideBar, setOpenSideBar} = sideBar;
   const {isMobileView} = mobileView;
-  const {isLoaded, isSignedIn, user} = useUser();
 
   const handleClickedIcon = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
     event.stopPropagation();
     setOpenSideBar(true);
   }
   return (
-    <div className={`p-8 pt-12 flex items-center justify-between ${isDark ? "bg-black" : "bg-white"}`}
+    <div className={`p-8 pt-12 flex items-center justify-between ${isDark ? "bg-blackColor" : "bg-white"}`}
     >
       <div className='flex gap-7 items-center'>
         <div className={`${isMobileView ? "flex" : "hidden"} cursor-pointer`}>
@@ -31,9 +30,6 @@ const TopBar = () => {
         <div className='flex flex-col'>
           <span className='font-bold text-2xl'>
             Hello, {" "}
-            <span className='font-light'>
-              {user?.lastName} {user?.firstName}
-            </span>
           </span>
           <span className='text-[12px] font-light'>Welcome Back !!</span>
         </div>
@@ -45,8 +41,8 @@ const TopBar = () => {
         height={20}
         width={20}
         className={`cursor-pointer ${isDark ? "text-white" : "text-gray-500"}`}
+        onClick={()=>setOpenSearchBar((openSearchBar)=>!openSearchBar)}
         />
-        {/* <div className='w-20'><UserButton /></div> */}
       </div>
     </div>
   )

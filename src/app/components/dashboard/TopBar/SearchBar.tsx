@@ -42,15 +42,16 @@ const SearchBar = () => {
 
   return (
     <div className='w-1/3'>
-      <div className='dlex gap-2 items-center border p-3 rounded-lg'>
+      <div className='flex gap-2 items-center border p-3 rounded-lg'>
         <FontAwesomeIcon
         icon={faSearch}
-        className={`${isDark ? "text-white" : "bg-gray-500"}`}
+        className={`${isDark ? "text-white" : "text-gray-500"}`}
         height={20}
         width={20}
         />
         <input
-        className={`outline-none text-[14px] font-light w-full ${isDark ? "bg-black" : "bg-white"}`}
+        className={`outline-none text-[14px] font-light w-full
+          ${isDark ? "bg-blackColor" : "bg-white"}`}
         placeholder='キーワードを入力'
         ref={inputRef}
         value={searchKeyword}
