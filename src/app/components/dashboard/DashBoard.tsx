@@ -8,15 +8,13 @@ const DashBoard = () => {
   const {isDark, setIsDark } = useGlobalContextProvider();
 
   return (
-    <div className="poppins w-full">
-      <TopBar />
-      <div className={`${isDark ? "bg-transparent" : "bg-slate-50"} flex h-[400px]`}>
+      <div className="poppins w-full h-full">
         {/* main content */}
         <div>
-          <Statistics />
+          <TopBar />
+          <MainArea/>
         </div>
       </div>
-    </div>
   )
 }
 

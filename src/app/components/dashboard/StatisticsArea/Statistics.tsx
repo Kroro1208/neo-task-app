@@ -18,7 +18,7 @@ const Statistics = () => {
     const { isDark, setIsDark } = useGlobalContextProvider();
 
   return (
-    <div className={`${isDark ? "bg-blackColor" : "bg-white"} m-5 p-8 rounded-lg flex gap-4`}>
+    <div className={`${isDark ? "bg-blackColorDark" : "bg-white"} m-5 p-8 rounded-lg flex gap-4`}>
       {staticticsCrd.map((singleCard, cardIndex) => (
         <div key={cardIndex}>
             <Card singleCard={singleCard}/>
