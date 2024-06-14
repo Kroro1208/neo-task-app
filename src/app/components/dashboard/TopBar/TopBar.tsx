@@ -16,13 +16,14 @@ const TopBar = () => {
     setOpenSideBar(true);
   }
   return (
-    <div className={`p-8 pt-12 flex items-center justify-between ${isDark ? "bg-blackColor" : "bg-white"}`}
+    <div className={`p-8 pt-12 flex items-center justify-between
+      ${isDark ? "bg-blackColor" : "bg-white"}`}
     >
       <div className='flex gap-7 items-center'>
-        <div className={`${isMobileView ? "flex" : "hidden"} cursor-pointer`}>
+        <div className={`${isMobileView ? "flex" : "md:hidden"} cursor-pointer`}>
           <FontAwesomeIcon
+          onClick={()=>setOpenSideBar(!openSideBar)}
           icon={faBars}
-          onClick={(event)=>handleClickedIcon(event)}
           height={14}
           width={14}
           />

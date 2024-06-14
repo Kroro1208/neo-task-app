@@ -1,9 +1,8 @@
 "use client";
 
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import { Project } from "./Data/ProjectsData";
 import { ProjectCategory } from "./Data/CategoriesData";
-import { useUser} from "@clerk/nextjs";
 
 interface MenuItem {
     name: string;
@@ -74,6 +73,14 @@ function GlobalContextProvider({children}: {children: ReactNode}) {
     const [allProjects, setAllProjects] = useState<Project[]>([]);
     const [allCategories, setAllCategories] = useState<ProjectCategory[]>([]);
 
+    useEffect(() => {
+        function handleResize(){
+            setIsMobileView(window.innerWidth <= 1400);
+        }
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return window.addEventListener('resize', handleResize);
+    }, []);
 
     return (
         <GlobalContext.Provider

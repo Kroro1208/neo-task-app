@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket, faFeather } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContextProvider } from "../ContextAPI";
@@ -13,12 +13,35 @@ interface MenuItem {
 }
 
 const SideBar = () => {
-    const { isDark  } = useGlobalContextProvider();
+    const { isDark, sideBar, mobileView  } = useGlobalContextProvider();
+    const { openSideBar, setOpenSideBar } = sideBar;
+    const sideBarRef = useRef<HTMLDivElement>(null);
+    const { isMobileView } = mobileView;
     const [ menuItems, setMenuItem] = useState<MenuItem[]>([
         {name: "DashBoard", icon: "faDashboard", isSelected: true},
         {name: "Projects", icon: "faBarsProgress", isSelected: false},
         {name: "Categories", icon: "faLayerGroup", isSelected: false},
     ]);
+
+    useEffect(()=> {
+      function handleResize(){
+        setOpenSideBar(false);
+      }
+
+      function handleOutsideClick(event: MouseEvent){
+        if(sideBarRef.current && sideBarRef.current.contains(event.target as Node)){
+          setOpenSideBar(false);
+        }
+      }
+
+      window.addEventListener('resize', handleResize);
+      document.removeEventListener('click', handleOutsideClick);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        document.removeEventListener('click', handleOutsideClick);
+      };
+    }, [openSideBar]);
 
     const updateItemSelection = (indexItem: number) => {
         const copyMenuItems = menuItems.map((item, index)=> {
@@ -33,7 +56,12 @@ const SideBar = () => {
     }
 
   return (
-    <div className="poppins border border-gray-200 h-full w-[330px] p-6 py-16 flex flex-col gap-40 justify-center">
+    <div
+    ref={sideBarRef}
+    className={`${openSideBar ? "flex absolute w-[280px] h-full" : "flex"}
+      ${isMobileView ? (!openSideBar ? "hidden" : "flex") : ""}
+      ${isDark ? "bg-blackColor" : "bg-white"}
+      flex flex-col gap-36 poppins z-10 shadow-lg w-[330px] p-8 pt-12`}>
       {/* logo */}
       <div className="flex gap-2 items-center">
         <FontAwesomeIcon
