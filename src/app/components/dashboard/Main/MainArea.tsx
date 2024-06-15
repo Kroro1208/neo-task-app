@@ -6,10 +6,11 @@ import ChartBarProgress from './ChartBarProgress';
 import RecentTasks from './RecentTasks';
 
 const MainArea = () => {
-  const {isDark ,setIsDark} = useGlobalContextProvider();
+  const {isDark, mobileView} = useGlobalContextProvider();
+  const {isMobileView} = mobileView;
   return (
-    <div className={`${isDark ? "bg-transparent" : "bg-slate-50"} flex h-screen`}>
-      <div className='w-9/12'>
+    <div className={`${isDark ? "bg-transparent" : "bg-slate-50"} flex gap-3 ${isMobileView ? "flex-col" : "flex-row"}`}>
+      <div className={`${isMobileView ? "" : "w-8/12"} border`}>
         <Statistics />
         <ChartBarProgress />
         <RecentTasks />

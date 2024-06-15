@@ -2,9 +2,10 @@ import { useGlobalContextProvider } from "@/app/ContextAPI";
 import LatestProjets from "./LatestProjets";
 
 const RightSideBar = () => {
-    const { isDark, setIsDark } = useGlobalContextProvider();
+    const { isDark, mobileView } = useGlobalContextProvider();
+    const { isMobileView } = mobileView;
   return (
-    <div className="w-4/12 flex flex-col p-4 gap-4">
+    <div className={`${ isMobileView ? "" : "w-4/12" } flex flex-col p-4 gap-4`}>
       <OverAllProgress isDark={isDark}/>
       <LatestProjets />
     </div>

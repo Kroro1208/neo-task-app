@@ -61,7 +61,7 @@ const SideBar = () => {
     className={`${openSideBar ? "flex absolute w-[280px] h-full" : "flex"}
       ${isMobileView ? (!openSideBar ? "hidden" : "flex") : ""}
       ${isDark ? "bg-blackColor" : "bg-white"}
-      flex flex-col gap-36 poppins z-10 shadow-lg w-[330px] p-8 pt-12`}>
+      flex flex-col gap-32 poppins z-10 shadow-lg w-[330px] h-full p-8 pt-12`}>
       {/* logo */}
       <div className="flex gap-2 items-center">
         <FontAwesomeIcon
