@@ -75,7 +75,7 @@ function GlobalContextProvider({children}: {children: ReactNode}) {
 
     useEffect(() => {
         function handleResize(){
-            setIsMobileView(window.innerWidth <= 1400);
+            setIsMobileView(window.innerWidth <= 1160);
         }
         handleResize();
         window.addEventListener('resize', handleResize);
