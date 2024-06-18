@@ -17,6 +17,7 @@ interface CustomTooltipProps {
 const ChartBarProgress = () => {
     const [mocDate, setMocData] = useState<TaskData[]>([]);
     const { isDark } = useGlobalContextProvider();
+    const [currentWidth, setCurrentWidth ] = useState<number>(window.innerWidth);
 
     useEffect(()=> {
         const data: TaskData[] = [
@@ -31,6 +32,16 @@ const ChartBarProgress = () => {
 
         setMocData(data);
     }, []);
+
+    useEffect(() => {
+        function handleResize() {
+            setCurrentWidth(window.innerWidth);
+        }
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        }
+    }, [currentWidth]);
 
     const CustomToolTip:React.FC<CustomTooltipProps> = ({
         active,
@@ -74,15 +85,16 @@ const ChartBarProgress = () => {
     return (
         <div className={`${isDark ? "bg-blackColor" : "text-white"}
         p-6 py-8 m-5 flex flex-col rounded-lg gap-12`}>
-            <div>Daily Progress</div>
-            <div>
-                <BarChart width={600} height={300} data={mocDate}>
+            <div className="font-semibold text-lg ml-5">Daily Progress</div>
+            <div className={`${currentWidth < 1358 ? "justify-center" : "" } flex`}>
+                <BarChart width={currentWidth < 1358 ? 480 : 600} height={300} data={mocDate}>
                     <CartesianGrid stroke="transparent"/>
                     <XAxis 
                         dataKey="day"
-                        tick={{fill: isDark ? "white" : "black"}}
+                        tick={{fill: isDark ? "white" : "black", fontSize: `${ currentWidth < 1318 ? 13 : 16 }`}}
+                        
                     />
-                    <YAxis tick={{fill: isDark ? "white" : "black"}}/>
+                    <YAxis tick={{fill: isDark ? "white" : "black", fontSize: `${ currentWidth < 1318 ? 13 : 16 }`}}/>
                     <Tooltip content={<CustomToolTip label={"test"}/>} />
                     <Bar
                         dataKey="taskDone"
