@@ -1,3 +1,4 @@
+"use client";
 import { useGlobalContextProvider } from "@/app/ContextAPI";
 import { faDiagramProject, faLayerGroup, faListCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,7 +24,6 @@ const Statistics = () => {
         function handleResize(){
             setCurrentWidth(window.innerWidth);
         }
-
         window.addEventListener('resize', handleResize);
         return () => {
             window.addEventListener('resize', handleResize);

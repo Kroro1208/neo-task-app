@@ -1,3 +1,4 @@
+import { CubePlusIcon } from '@/app/assets/svgs/svgIcons';
 import { useGlobalContextProvider } from '@/app/ContextAPI'
 import { faBarsProgress, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -5,13 +6,21 @@ import React from 'react'
 
 const LatestProjets = () => {
     const {isDark , setIsDark} = useGlobalContextProvider();
+    const projects: any = [];
 
   return (
     <div className={`${isDark ? "bg-blackColorDark": "bg-white"}
     flex flex-col rounded-md p-4 py-8 gap-8`}>
         <span className='font-semibold text-center text-lg'>直近のタスク状況</span>
         <div className='flex flex-col gap-4'>
-            <ProjectCards />
+            { projects.length > 0 ? (
+                projects.map((prpject: any, projectIndex: number) => (
+                    <div key={projectIndex}>
+                        <ProjectCards />
+                    </div>
+                ))
+            ): ( <EmptyProjects /> )
+        }
         </div>
     </div>
   )
@@ -52,6 +61,21 @@ const LatestProjets = () => {
             </div>
         </div>
     );
+}
+
+const EmptyProjects = () => {
+    return (
+        <div className='flex flex-col justify-center items-center gap-5 p-1'>
+            <CubePlusIcon width={120} height={120} color='#d4d4d4'/>
+            <div className=''>
+                <h3 className='font-semibold text-lg mb-1 text-center'>プロジェクトがありません</h3>
+                <p className='text-gray-400 text-sm w-52 text-center'>プロジェクトを作成</p>
+            </div>
+            <button className='bg-mainColor p-3 rounded-md text-white text-center text-sm px-7'>
+                新規タスク作成
+            </button>
+        </div>
+    )
 }
 
 export default LatestProjets
