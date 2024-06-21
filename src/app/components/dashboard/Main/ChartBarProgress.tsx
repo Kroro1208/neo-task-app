@@ -15,7 +15,7 @@ interface CustomTooltipProps {
 }
 
 const ChartBarProgress = () => {
-    const [mocDate, setMocData] = useState<TaskData[]>([]);
+    const [mocData, setMocData] = useState<TaskData[]>([]);
     const { isDark } = useGlobalContextProvider();
     const [currentWidth, setCurrentWidth ] = useState<number>(window.innerWidth);
 
@@ -87,7 +87,7 @@ const ChartBarProgress = () => {
         p-6 py-8 m-5 flex flex-col rounded-lg gap-12`}>
             <div className="font-semibold text-lg ml-5">Daily Progress</div>
             <div className={`${currentWidth < 1358 ? "justify-center" : "" } flex`}>
-                <BarChart width={currentWidth < 1358 ? 480 : 600} height={300} data={mocDate}>
+                <BarChart width={currentWidth < 1358 ? 480 : 600} height={300} data={mocData}>
                     <CartesianGrid stroke="transparent"/>
                     <XAxis 
                         dataKey="day"
