@@ -10,11 +10,11 @@ interface recentTasks {
 }
 
 const recentTasksArray:recentTasks[] = [
-    { _id: 1, taskName: '英語学習', createdAt: '2024 Jun 14', projectName: 'Project1', status: 'pending' },
-    { _id: 2, taskName: '筋トレ', createdAt: '2024 Jun 14', projectName: 'Project2', status: 'pending' },
-    { _id: 3, taskName: '個人開発', createdAt: '2024 Jun 14', projectName: 'Project3', status: 'pending' },
-    { _id: 4, taskName: 'コーチング', createdAt: '2024 Jun 14', projectName: 'Project4', status: 'pending' },
-    { _id: 5, taskName: 'AWS資格試験勉強', createdAt: '2024 Jun 14', projectName: 'Project5', status: 'pending' },
+    // { _id: 1, taskName: '英語学習', createdAt: '2024 Jun 14', projectName: 'Project1', status: 'pending' },
+    // { _id: 2, taskName: '筋トレ', createdAt: '2024 Jun 14', projectName: 'Project2', status: 'pending' },
+    // { _id: 3, taskName: '個人開発', createdAt: '2024 Jun 14', projectName: 'Project3', status: 'pending' },
+    // { _id: 4, taskName: 'コーチング', createdAt: '2024 Jun 14', projectName: 'Project4', status: 'pending' },
+    // { _id: 5, taskName: 'AWS資格試験勉強', createdAt: '2024 Jun 14', projectName: 'Project5', status: 'pending' },
 ];
 
 const RecentTasks = () => {
@@ -33,17 +33,18 @@ const RecentTasks = () => {
 
     return (
         <div className={`${isDark ? "bg-blackColor" : "bg-white"} p-4 py-8 m-5`}>
-      <div className='font-semibold text-lg ml-5 mb-12'>
-        直近のタスク
-        {recentTasksArray.map((recentTask, index) => (
-            <div key={index}><TaskCard recentTaskProps={recentTask}/></div>
-            ))}
-      </div>
-    </div>
-  )
-  
-  }
-  
+            <div className='font-semibold text-lg ml-5 mb-12'>直近のタスク</div>
+            {recentTasksArray.length > 0 ? (
+                recentTasksArray.map((recentTask, index) => (
+                    <div key={index}>
+                        <TaskCard recentTaskProps={recentTask} currentWidth={currentWidth} />
+                    </div>
+                ))
+            ) : ( <EmptyTaskPlaceholder /> )}
+        </div>
+        );
+    }
+
 const TaskCard = ({recentTaskProps, currentWidth}: {recentTaskProps: recentTasks, currentWidth:number}) => {
     const {taskName, projectName, createdAt, status } = recentTaskProps;
     const {isDark} = useGlobalContextProvider();
@@ -82,6 +83,17 @@ const TaskCard = ({recentTaskProps, currentWidth}: {recentTaskProps: recentTasks
         </div>
     );
 }
-  
-  export default RecentTasks
-  
+
+export default RecentTasks
+
+const EmptyTaskPlaceholder = () => {
+    return (
+        <div className='flex flex-col p-1 gap-5 justify-center items-center'>
+            <div className=''>
+                <p className='text-gray-400 text-center text-[13px]'>
+                    There are no Tasks at this moment...
+                </p>
+            </div>
+        </div>
+    )
+}
