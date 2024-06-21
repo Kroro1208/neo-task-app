@@ -13,15 +13,11 @@ interface MenuItem {
 }
 
 const SideBar = () => {
-    const { isDark, sideBar, mobileView  } = useGlobalContextProvider();
+    const { isDark, sideBar, mobileView, dashboardItems  } = useGlobalContextProvider();
     const { openSideBar, setOpenSideBar } = sideBar;
-    const sideBarRef = useRef<HTMLDivElement>(null);
+    const { menuItems, setMenuItems } = dashboardItems;
     const { isMobileView } = mobileView;
-    const [ menuItems, setMenuItem] = useState<MenuItem[]>([
-        {name: "DashBoard", icon: "faDashboard", isSelected: true},
-        {name: "Projects", icon: "faBarsProgress", isSelected: false},
-        {name: "Categories", icon: "faLayerGroup", isSelected: false},
-    ]);
+    const sideBarRef = useRef<HTMLDivElement>(null);
 
     useEffect(()=> {
       function handleResize(){
@@ -52,7 +48,7 @@ const SideBar = () => {
             return {...item, isSelected: false};
         });
 
-        setMenuItem(copyMenuItems);
+        setMenuItems(copyMenuItems);
     }
 
   return (

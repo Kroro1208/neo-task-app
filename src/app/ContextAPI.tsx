@@ -3,6 +3,7 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import { Project } from "./Data/ProjectsData";
 import { ProjectCategory } from "./Data/CategoriesData";
+import { faBarsProgress, faDashboard, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
 interface MenuItem {
     name: string;
@@ -69,9 +70,13 @@ function GlobalContextProvider({children}: {children: ReactNode}) {
     const [isDark, setIsDark] = useState<boolean>(false);
     const [openSideBar, setOpenSideBar] = useState<boolean>(false);
     const [isMobileView, setIsMobileView] = useState<boolean>(false);
-    const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
     const [allProjects, setAllProjects] = useState<Project[]>([]);
     const [allCategories, setAllCategories] = useState<ProjectCategory[]>([]);
+    const [menuItems, setMenuItems] = useState<MenuItem[]>([
+        { name: 'DashBoard', icon: faDashboard, isSelected: true },
+        { name: 'Projects', icon: faBarsProgress, isSelected: false },
+        { name: 'Categories', icon: faLayerGroup, isSelected: false },
+    ]);
 
     useEffect(() => {
         function handleResize(){
