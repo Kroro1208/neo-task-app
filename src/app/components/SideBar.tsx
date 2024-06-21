@@ -37,7 +37,7 @@ const SideBar = () => {
         window.removeEventListener('resize', handleResize);
         document.removeEventListener('click', handleOutsideClick);
       };
-    }, [openSideBar]);
+    }, [openSideBar, setOpenSideBar]);
 
     const updateItemSelection = (indexItem: number) => {
         const copyMenuItems = menuItems.map((item, index)=> {
