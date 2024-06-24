@@ -1,3 +1,4 @@
+"use client"
 import { useGlobalContextProvider } from '@/app/ContextAPI';
 import { faBarsProgress, faEllipsis, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,13 +9,14 @@ const ProjectsArea = () => {
     const [currentWidth, setCurrentWidth] = useState<number>(window.innerWidth);
     useEffect(()=> {
         function handleResize() {
-            setCurrentWidth(currentWidth);
+            setCurrentWidth(window.innerWidth);
         }
         window.addEventListener('resize', handleResize);
+        handleResize();
         return () => {
             window.removeEventListener('resize', handleResize);
         }
-     }, [currentWidth, setCurrentWidth]);
+     }, []);
   return (
     <div className={`${isDark ? "bg-blackColor" : "bg-white"} p-8 h-[870px]`}>
         <div className={`${isDark ? "bg-blackColor" : "bg-white"}

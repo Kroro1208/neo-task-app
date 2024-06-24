@@ -31,7 +31,7 @@ const SideBar = () => {
       }
 
       window.addEventListener('resize', handleResize);
-      document.removeEventListener('click', handleOutsideClick);
+      document.addEventListener('click', handleOutsideClick);
 
       return () => {
         window.removeEventListener('resize', handleResize);
