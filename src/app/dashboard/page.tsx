@@ -2,8 +2,8 @@
 import { useGlobalContextProvider } from '../ContextAPI'
 import SideBar from '../components/SideBar';
 import DashBoard from '../components/Dashboard/Dashboard';
-import Categories from '../components/CategoriesScreen/Categories';
 import Projects from '../components/ProjectsScreen/Projects';
+import Categories from '../components/CategoriesScreen/Categories';
 
 const Page = () => {
     const {isDark, sideBar, dashboardItems} = useGlobalContextProvider();

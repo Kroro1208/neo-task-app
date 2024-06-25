@@ -1,8 +1,12 @@
+import React from 'react'
+import CategoriesTopBar from './CategoriesTopBar'
+import CategoriesArea from './CategoriesArea'
 
 const Categories = () => {
   return (
-    <div className='h-[1000px] w-full bg-slate-50'>
-      Categories
+    <div>
+      <CategoriesTopBar />
+      <CategoriesArea />
     </div>
   )
 }

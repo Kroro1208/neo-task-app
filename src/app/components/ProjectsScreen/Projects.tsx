@@ -1,3 +1,4 @@
+import CategoriesArea from "../CategoriesScreen/CategoriesArea"
 import ProjectsArea from "./ProjectsArea"
 import ProjectsTopBar from "./ProjectsTopBar"
 
