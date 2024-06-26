@@ -4,7 +4,7 @@ import CategoriesArea from './CategoriesArea'
 
 const Categories = () => {
   return (
-    <div>
+    <div className='h-[1000px] w-full'>
       <CategoriesTopBar />
       <CategoriesArea />
     </div>

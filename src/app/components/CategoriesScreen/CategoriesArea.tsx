@@ -10,7 +10,7 @@ interface category {
 
 const CategoriesArea = () => {
     const {isDark} = useGlobalContextProvider();
-    const [ currentWidth, setCurrentWidth ] = useState<number>(window.innerWidth);
+    const [ currentWidth, setCurrentWidth ] = useState<number>(0);
     useEffect(() => {
         function handleResize() {
             setCurrentWidth(window.innerWidth);
@@ -22,7 +22,7 @@ const CategoriesArea = () => {
     }, [currentWidth]);
   return (
     <div className={`${ isDark ? "bg-blackColor" : "bg-slate-50" } h-[870px] p-8`}>
-        <div className={`${ isDark ? "bg-blackColor" : "bg-white"}`}>
+        <div className={`${ isDark ? "bg-blackColor" : "bg-white"} rounded-md p-4 py-5 flex flex-col gap-4`}>
             <CategoryCard isDark={isDark}/>
             <CategoryCard isDark={isDark}/>
             <CategoryCard isDark={isDark}/>
