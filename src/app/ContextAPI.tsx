@@ -19,6 +19,7 @@ interface dropDownPosition {
 interface GlobalContext {
     isDark: boolean;
     setIsDark: (isDark: boolean) => void;
+    menuItems: MenuItem[];
     sideBar: {
         openSideBar: boolean;
         setOpenSideBar: (openSideBar: boolean) => void;
@@ -39,11 +40,30 @@ interface GlobalContext {
         allCategories: ProjectCategory[];
         setAllCategories: Dispatch<SetStateAction<ProjectCategory[]>>;
     };
+    projectWindow: {
+        openNewProjectBox: boolean;
+        setOpenNewProjectBox: (openNewProjectBox: boolean) => void;
+        openCreateProject: boolean;
+        setOpenCreateProject: (openCreateProject: boolean) => void;
+        openTaskWindow: boolean;
+        setOpenTaskWindow: (openTaskWindow: boolean) => void;
+    };
+    iconBox: {
+        openIconBox: boolean;
+        setOpenIconBox: (openIconBox: boolean) => void;
+    };
+    dropDown: {
+        openDropDown: boolean;
+        setOpenDropDown: (openDropDown: boolean) => void;
+        dropDownPosition: dropDownPosition;
+        setDropDownPosition: Dispatch<SetStateAction<dropDownPosition>>;
+    };
 }
 
 const GlobalContext = createContext<GlobalContext>({
     isDark: false,
     setIsDark: () => {},
+    menuItems: [],
     sideBar: {
         openSideBar: false,
         setOpenSideBar: () => {},
@@ -64,6 +84,24 @@ const GlobalContext = createContext<GlobalContext>({
         allCategories: [],
         setAllCategories: () => {},
     },
+    projectWindow: {
+        openNewProjectBox: false,
+        setOpenNewProjectBox: () => {},
+        openCreateProject: false,
+        setOpenCreateProject: () => {},
+        openTaskWindow: false,
+        setOpenTaskWindow: () => {}
+        },
+    iconBox: {
+        openIconBox: false,
+        setOpenIconBox: () => {},
+    },
+    dropDown: {
+    openDropDown: false,
+    setOpenDropDown: () => {},
+    dropDownPosition: { x: 0, y: 0 },
+    setDropDownPosition: () => {},
+    },
 });
 
 function GlobalContextProvider({children}: {children: ReactNode}) {
@@ -77,26 +115,54 @@ function GlobalContextProvider({children}: {children: ReactNode}) {
         { name: 'Projects', icon: faBarsProgress, isSelected: false },
         { name: 'Categories', icon: faLayerGroup, isSelected: false },
     ]);
+    const [ openNewProjectBox, setOpenNewProjectBox] = useState(false);
+    const [ openCreateProject, setOpenCreateProject] = useState(false);
+    const [openIconBox, setOpenIconBox] = useState(false);
+    const [openDropDown, setOpenDropDown] = useState(false);
+    const [ openTaskWindow, setOpenTaskWindow] = useState(false);
+    const [dropDownPosition, setDropDownPosition] = useState({ x: 0, y: 0 });
+
 
     useEffect(() => {
         function handleResize(){
             setIsMobileView(window.innerWidth <= 1160);
+            setOpenDropDown(false);
         }
         handleResize();
         window.addEventListener('resize', handleResize);
         return window.addEventListener('resize', handleResize);
     }, []);
 
+    
+
     return (
         <GlobalContext.Provider
             value={{
                 isDark,
                 setIsDark,
+                menuItems,
                 sideBar: { openSideBar, setOpenSideBar },
                 mobileView: { isMobileView, setIsMobileView },
                 dashboardItems: { menuItems, setMenuItems },
                 allProjectsObject: { allProjects, setAllProjects },
                 allCategoriesObject: { allCategories, setAllCategories },
+                projectWindow: {
+                    openNewProjectBox,
+                    setOpenNewProjectBox,
+                    openCreateProject,
+                    setOpenCreateProject,
+                    openTaskWindow,
+                    setOpenTaskWindow
+                },
+                iconBox: {
+                    openIconBox, setOpenIconBox
+                },
+                dropDown: {
+                    openDropDown,
+                    setOpenDropDown,
+                    dropDownPosition,
+                    setDropDownPosition
+                }
             }}
         >
             {children}
