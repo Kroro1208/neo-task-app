@@ -1,7 +1,6 @@
 import { faBars, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useGlobalContextProvider } from '@/app/ContextAPI';
-import { icon } from '@fortawesome/fontawesome-svg-core';
 
 const ProjectsTopBar = () => {
     const { sideBar, mobileView, isDark } = useGlobalContextProvider();
