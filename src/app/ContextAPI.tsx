@@ -40,6 +40,12 @@ interface GlobalContext {
         allCategories: ProjectCategory[];
         setAllCategories: Dispatch<SetStateAction<ProjectCategory[]>>;
     };
+
+    selectedItemObject: {
+        selectedItem: any | null;
+        setSelectedItem: Dispatch<SetStateAction<any | null>>;
+    };
+
     projectWindow: {
         openNewProjectBox: boolean;
         setOpenNewProjectBox: (openNewProjectBox: boolean) => void;
@@ -102,6 +108,10 @@ const GlobalContext = createContext<GlobalContext>({
     dropDownPosition: { x: 0, y: 0 },
     setDropDownPosition: () => {},
     },
+    selectedItemObject: {
+        selectedItem: null,
+        setSelectedItem: () => {},
+      },
 });
 
 function GlobalContextProvider({children}: {children: ReactNode}) {
@@ -121,6 +131,7 @@ function GlobalContextProvider({children}: {children: ReactNode}) {
     const [openDropDown, setOpenDropDown] = useState(false);
     const [ openTaskWindow, setOpenTaskWindow] = useState(false);
     const [dropDownPosition, setDropDownPosition] = useState({ x: 0, y: 0 });
+    const [ selectedItem, setSelectedItem] = useState<any | null>(null);
 
 
     useEffect(() => {
@@ -132,6 +143,13 @@ function GlobalContextProvider({children}: {children: ReactNode}) {
         window.addEventListener('resize', handleResize);
         return window.addEventListener('resize', handleResize);
     }, []);
+
+    useEffect(() => {
+        if(openNewProjectBox){
+            setOpenNewProjectBox(false);
+            setOpenIconBox(false);
+        }
+    }, [menuItems]);
 
     
 
@@ -162,6 +180,10 @@ function GlobalContextProvider({children}: {children: ReactNode}) {
                     setOpenDropDown,
                     dropDownPosition,
                     setDropDownPosition
+                },
+                selectedItemObject: {
+                    selectedItem,
+                    setSelectedItem
                 }
             }}
         >
