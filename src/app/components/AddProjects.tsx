@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useGlobalContextProvider } from "../ContextAPI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faFlask } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faFlask, faIcons } from "@fortawesome/free-solid-svg-icons";
 import IconsWindow from "./ProjectsScreen/IconsWindow";
 import MultipleSelectIcon from "./MultipleSelectIcon";
 
@@ -85,10 +85,10 @@ const AddProjects = () => {
             ${isDark ? "bg-blackColorDark" : "bg-white"} placeholder:プロジェクト名を入力`}
           />
           <FontAwesomeIcon
-           className="bg-mainColor mt-[1px] rounded-md text-white cursor-pointer"
+           className="bg-mainColor mt-[1px] p-4 rounded-md text-white cursor-pointer"
            onClick={()=> setOpenIconBox(true)}
            icon={selectedIcon ? selectedIcon : faFlask}
-           height={16}
+           height={20}
            width={20}
           />
         </div>

@@ -31,7 +31,7 @@ const IconsWindow = ({ setSelectedIcon }: { setSelectedIcon: (icon: any) => void
         <FontAwesomeIcon
             height={20}
             width={20}
-            className={`${isDark ? "bg-blackColorDark" : "bg-white"}`
+            className={`${isDark ? "bg-blackColorDark" : "bg-white"} cursor-pointer`
             }
             icon={faClose}
             onClick={() => setOpenIconBox(false)}
@@ -42,7 +42,6 @@ const IconsWindow = ({ setSelectedIcon }: { setSelectedIcon: (icon: any) => void
         <div className="flex flex-wrap gap-4 items-center rounded-md border border-gray-200 p-5">
             {allIcons.map((icon, iconIndex)=> (
                 <FontAwesomeIcon
-                // todo
                 className={`${icon.isSelected ? "text-mainColor border-mainColor" : `${isDark ? "text-white" : "text-black"}`}
                   border p-2 border-gray-300 rounded-md text-xl cursor-pointer hover:text-mainColor`}
                 icon={icon.faIcon}
