@@ -18,6 +18,7 @@ const AddProjects = () => {
     const projectInputRef = useRef<HTMLInputElement>(null);
     const { selectedItem, setSelectedItem } = selectedItemObject;
     const [ selectedIcon, setSelectedIcon ] = useState<any>(faFlask);
+    const { allCategories } = allCategoriesObject;
 
     const [ projectName, setProjectName ] = useState("");
     const [ projectCategories, setProjectCategories ] = useState<string[]>([]);
@@ -52,6 +53,10 @@ const AddProjects = () => {
       }
     }, [openNewProjectBox, parentHeight, parentWidth, childWidth]);
     
+    const handleCategoryChange = (value: string[]) => {
+      setProjectCategories(value);
+    }
+    
   return (
     <div style={{
       left: `${position.left}px`,
@@ -82,13 +87,14 @@ const AddProjects = () => {
           value={projectName}
           onChange={(event) => setProjectName(event.target.value)}
           className={`border w-full border-gray-200 outline-none p-4 rounded-md text-[13px]
-            ${isDark ? "bg-blackColorDark" : "bg-white"} placeholder:プロジェクト名を入力`}
+            ${isDark ? "bg-blackColorDark" : "bg-white"}`}
+          placeholder="プロジェクト名を入力"
           />
           <FontAwesomeIcon
            className="bg-mainColor mt-[1px] p-4 rounded-md text-white cursor-pointer"
            onClick={()=> setOpenIconBox(true)}
            icon={selectedIcon ? selectedIcon : faFlask}
-           height={20}
+           height={16}
            width={20}
           />
         </div>
@@ -96,19 +102,21 @@ const AddProjects = () => {
         {/* カテゴリーの選択 */}
       <div className={`flex flex-col gap-2 mx-3`}>
         <MultipleSelectIcon
-        
+        selectedCategories={allCategories}
+        onselectionchange={handleCategoryChange}
+        openNewProjectBox={openNewProjectBox}
+        projectCategories={projectCategories}
+        selectedItem={selectedItem}
+        isDark={isDark}
         />
-        <span className="text-sm opacity-80">カテゴリー</span>
-        <select className={`p-3 text-[13px] outline-none border border-gray-200 rounded-md
-          ${isDark ? "bg-blackColor" : "bg-white opacity-60"}`}>
-          <option value="">カテゴリーを選択</option>
-          <option value="option2">カテゴリー1</option>
-          <option value="option3">カテゴリー2</option>
-        </select>
       </div>
       <div className="text-center mx-2 mt-10">
-        <button className="bg-mainColor w-full p-3 text-white rounded-md text-sm">
-          プロジェクト追加
+        <button
+        onClick={() => {
+          selectedItem ? editProjectFunction() : addNewProject();
+        }}
+        className="bg-mainColor w-full p-3 text-white rounded-md text-sm">
+          { selectedItem === null ? "追加" : "編集"}
         </button>
       </div>
     </div>
